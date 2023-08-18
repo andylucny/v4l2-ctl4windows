@@ -115,7 +115,8 @@ void list_devices()
 	std::vector<std::string> devicePaths;
 	int count = GetUSBCameraDevicesList(list, devicePaths);
 	for (int i = 0; i < count; i++) {
-		std::cout << list[i] << std::endl;
+		if (devicePaths[i].rfind("\\\\", 0) == 0)
+			std::cout << list[i] << std::endl;
 	}
 }
 
