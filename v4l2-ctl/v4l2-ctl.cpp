@@ -631,7 +631,7 @@ int main(int argc, char* argv[]) {
 
 	int device = 0;
 	bool getzoom = false, gettilt = false, getpan = false;
-	long _zoom=0, _tilt=0, _pan=0;
+	long _zoom=100, _tilt=0, _pan=0;
 	bool setzoom = false, settilt = false, setpan = false;
 	long zoom, tilt, pan;
 	char order[100];
