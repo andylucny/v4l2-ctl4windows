@@ -645,10 +645,12 @@ int main(int argc, char* argv[]) {
 			list_devices();
 			break;
 		case OptSetDevice:
+			//std::cout << "OptSetDevice" << std::endl;
 			if (!strncmp(optarg, "/dev/video", strlen("/dev/video"))) device = atoi(optarg + strlen("/dev/video"));
 			else device = atoi(optarg);
 			break;
 		case OptGetCtrl:
+			//std::cout << "OptGetDevice" << std::endl;
 			if (!strcmp(optarg, "zoom_absolute")) {
 				getzoom = true;
 				order[n++] = 0;
@@ -663,16 +665,18 @@ int main(int argc, char* argv[]) {
 			}
 			break;
 		case OptSetCtrl:
+			//std::cout << "OptSetCtrl" << std::endl;
 			if (sscanf(optarg, "%[^=]=%[^=]", variable, value) == 2) {
-				if (!strcmp(optarg, "zoom_absolute")) {
+				std::cout << "  " << variable << " = " << value << std::endl;
+				if (!strcmp(variable, "zoom_absolute")) {
 					setzoom = true;
 					zoom = atoi(value);
 				}
-				else if (!strcmp(optarg, "pan_absolute")) {
+				else if (!strcmp(variable, "pan_absolute")) {
 					setpan = true;
 					pan = atoi(value);
 				}
-				else if (!strcmp(optarg, "tilt_absolute")) {
+				else if (!strcmp(variable, "tilt_absolute")) {
 					settilt = true;
 					tilt = atoi(value);
 				}
@@ -681,6 +685,10 @@ int main(int argc, char* argv[]) {
 		}
 	}
 
+	//std::cout << device << std::endl;
+	//std::cout << getzoom << " " << gettilt << " " << getpan << std::endl;
+	//std::cout << setzoom << " " << settilt << " " << setpan << std::endl;
+	//std::cout << zoom << " " << tilt << " " << pan << std::endl;
 	zoom_tilt_pan(
 		device,
 		getzoom, gettilt, getpan, &_zoom, &_tilt, &_pan,
